@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<meta http-equiv="X-UA-Compatible" content="ie-edge">
+
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<script src="jquery-3.4.1.min.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="productos.js"></script>
+	<title>Productos App</title>
+
+
+</head>
+<body>
+<!--Barra de navegación-->
+<nav class="navbar navbar-light bg-primary">
+	<a href="#" class="navbar-brand">Productos App</a>
+</nav>
+
+<!-- Contenido Principal-->
+<div class="container">
+	<!-- Aplicación-->
+	<div id="App" class="row pt-5">
+
+		<!--Formulario -->
+		<div class="col-md-4">
+			<div class="card-header">
+				<h4>Agregar Producto</h4>
+			</div>
+			<form id="productos-form" class="card-body">
+				<input type="text" id="nombre"
+					   placeholder="Ingrese nombre"
+					   class="form-control"
+					   value="carro"
+				>
+				<div class="form-group">
+					<input type="number" step="0.01"
+						   id="precio"
+						   placeholder="Precio del producto"
+						   class="form-control"
+						   value="25.00"
+					>
+				</div>
+				<div class="form-group">
+					<input type="number" id="anio"
+						   placeholder="Año del producto"
+						   class="form-control"
+
+						   value="2019" min="1900"
+						   max="2019"
+					>
+				</div>
+				<input type="submit" value="Guardar"
+					   class="btn btn-primary btn-block"
+					   id="boton"
+				>
+
+			</form>
+
+		</div>
+
+		<!-- Listado de productos -->
+		<div id="listado" class="col-md-8">
+			<!--Agregando los nuevos productos-->
+		</div>
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Actualizar producto</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id="editar-productos-form" class="card-body">
+					<input type="hidden" name="modalIdProducto" >
+					<input type="text"
+						   id="modalNombre"
+						   placeholder="Ingrese nombre"
+						   class="form-control"
+						   value="carro"
+					>
+					<div class="form-group">
+						<input type="number" step="0.01"
+							   id="modalPrecio"
+							   placeholder="Precio del producto"
+							   class="form-control"
+							   value="25.00"
+						>
+					</div>
+					<div class="form-group">
+						<input type="number"
+							   id="modalAnio"
+							   placeholder="Año del producto"
+							   class="form-control"
+							   value="2019" min="1900"
+							   max="2019"
+						>
+					</div>
+
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+				<button type="button" id="guardarModal" class="btn btn-primary">Guardar cambios</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>
