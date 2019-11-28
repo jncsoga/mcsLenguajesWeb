@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AJAX y JSON HTML</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<button onclick="obtenerJSON()">Mostrar datos</button>
+	<div id="info">
+		
+	</div>
+
+	<script>
+		function obtenerJSON(){
+			var peticionAjax;
+			var resultado = document.getElementById("info");
+
+			if (window.XMLHttpRequest)
+				peticionAjax = new XMLHttpRequest();
+			else
+				peticionAjax = new ActiveXObject("Microsoft.XMLHTTP");
+
+			peticionAjax.onreadystatechange = function () {
+				if (peticionAjax.readyState==4 && 
+					peticionAjax.status == 200){
+					var datos = JSON.parse(peticionAjax.responseText);
+					console.log(datos);
+					for (var dato in datos){
+						resultado.innerHTML+=dato + ":" datos[dato] + "<BR>"
+					}
+				}
+			}
+
+			//Realizamos la peticion asíncrona
+			peticionAjax.open("GET","datos.json",true);
+			peticionAjax.send();
+		}
+	</script>
+</body>
+</html>

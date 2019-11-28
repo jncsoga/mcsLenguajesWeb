@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax</title>
+	<script type="text/javascript">
+		function ejecutarAjax(){
+			var peticionAjax;
+			if (window.XMLHttpRequest)
+				peticionAjax = new XMLHttpRequest();
+			else
+				peticionAjax = new ActiveXObject("Microsoft.XMLHTTP");
+
+			peticionAjax.onreadystatechange = function (){
+				if (peticionAjax.readyState == 4 &&
+					peticionAjax.status == 200){
+					//Si la petició ha sido finalizada y exitosa
+					//Asignamos al código HTML la respuesta de la ejecusión AJAX
+					document.getElementById("info").innerHTML = peticionAjax.responseText;
+				}
+			}
+			//Realizamos la petición asíncrona
+			peticionAjax.open("GET", "archivo.txt",true);
+			peticionAjax.send();
+		}
+
+	</script>
+</head>
+<body>
+	<button onclick="ejecutarAjax()">Haz click!</button>
+	<div id="info">Div sin Ajax</div>
+</body>
+</html>

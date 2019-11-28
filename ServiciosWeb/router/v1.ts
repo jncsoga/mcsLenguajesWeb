@@ -22,4 +22,14 @@ export default (app) => {
 
     // Obterner todos los post
     productosRoutes.get('/', getAllProducts);
+
+    productosRoutes.get('/:id', getProductoById);
+
+    productosRoutes.post('/', createProduct);
+
+    productosRoutes.put('/:id', updateProduct);
+
+    productosRoutes.delete('/:id', deleteProducto);
+
+    app.use('/api', apiRoutes);
 }

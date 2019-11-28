@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AJAX y JSON HTML</title>
+	<script src="jquery.min.js"></script>
+	<meta charset="utf-8">
+</head>
+<body>
+	<button onclick="obtenerJSON()">Mostrar datos</button>
+	<div id="info">
+		
+	</div>
+
+	<script>
+		function obtenerJSON(){
+			var peticionAjax;
+
+			if (window.XMLHttpRequest)
+				peticionAjax = new XMLHttpRequest();
+			else
+				peticionAjax = new ActiveXObject("Microsoft.XMLHTTP");
+
+			peticionAjax.onreadystatechange = function () {
+				if (peticionAjax.readyState==4 && 
+					peticionAjax.status == 200){
+					var datos = JSON.parse(peticionAjax.responseText);
+					var texto = "";
+					for (var i in datos){
+						var dato = datos[i];
+						for (var atributo in dato){
+							texto+=atributo + ":" + dato[atributo] + "<BR>";				
+						}
+						texto+="<BR>";
+					}
+		  			$("#info").html(texto);
+				}
+			}
+
+			//Realizamos la peticion asíncrona
+			peticionAjax.open("GET","arreglo2.json",true);
+			peticionAjax.send();
+		}
+	</script>
+</body>
+</html>

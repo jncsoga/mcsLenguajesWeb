@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Buscar JSON</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.encontrado{
+			color:green;
+		}
+
+		.no-encontrado {
+			color:#EB2D43;
+		}
+	</style>
+	<script src="jquery.min.js"></script>
+	<script type="text/javascript">
+		function buscarJson(usuario){
+			var peticionAjax;
+			if (window.XMLHttpRequest)
+				peticionAjax = new XMLHttpRequest();
+			else
+				peticionAjax = new ActiveXObject("Microsoft.XMLHTTP");
+
+			//Si el usuario no ha tecleado nada, el contenido del div queda vacio
+			if (usuario.length == 0){
+				$("#info").html("");
+			} else {
+				peticionAjax.onreadystatechange = function (){
+					if (peticionAjax.readyState == 4 &&
+						peticionAjax.status == 200){
+						//var archivo = '{"nombre":"Armando", "apellidos":"Borlotes"}';
+						var datos = JSON.parse(peticionAjax.responseText);
+						var encontrado = encontrarUsuario(datos,usuario);
+
+						var mensaje;
+						if (encontrado) 
+							mensaje = "<span class='encontrado'>Si fue encontrado</span>";
+						else 
+							mensaje = "<span class='no-encontrado'>No fue encontrado</span>";
+						$("#info").html(mensaje);
+					} //if
+				} //function
+			} //else
+
+			peticionAjax.open("GET", "arreglo.json",true);
+			peticionAjax.send();
+		} //function buscarJson
+
+		function encontrarUsuario(datos, usuario){
+			var arreglo = [];
+			for (var i in datos){
+				var nombre = datos[i].nombre.toLowerCase();
+				var apellido = datos[i].apellido.toLowerCase();
+
+				//push metemos los nombres a un arreglo
+				arreglo.push(nombre);
+				arreglo.push(apellido);
+			}
+
+			//Si el usuario es encontrado tendrá un índice
+			//entre 0 y n, por lo tanto, si el número 
+			//de índice del usuario buscado es mayor a -1
+			//significa que si se encuentra el nombre del usuario
+			//y regresará verdadero, de lo contrario, la 
+			//funcion regresará falso
+			return arreglo.indexOf(usuario.toLowerCase()) > -1;
+		}
+
+	</script>
+</head>
+<body>
+	Buscar persona: <input type="text" onkeyup="buscarJson(this.value)"/>
+
+	<div id = "info">
+		
+	</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+[
+  { 
+   "nombre": "Armando",
+   "apellido": "Broncas",
+   "edad":41
+  },
+  {
+  	"nombre": "Pedro",
+  	"apellido":"Paramo",
+  	"edad": 12
+  },
+  {
+  	"nombre": "Zoila",
+  	"apellido": "Vaca del corral",
+  	"edad": 22
+  },
+  {
+  	"nombre": "Pepe",
+  	"apellido": "Pecas",
+  	"edad": 24
+  }
+]

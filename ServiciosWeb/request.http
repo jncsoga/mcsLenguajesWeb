@@ -1,0 +1,15 @@
+### Colsultar Productos
+GET http://localhost:3000/api/products HTTP/1.1
+
+### Insertar Productos
+POST http://localhost:3000/api/products HTTP/1.1
+Content-Type: application/json
+
+{ 
+    "nombre": "Multicontacto",
+    "precio": 2.00,
+    "anio": 2019
+}
+
+
+
